@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import background from './assets/videoBackGround.mp4';
 import banner from './assets/banner1.jpg';
 import Container from '@mui/material/Container';
@@ -19,28 +20,10 @@ let modalitate = ["Online", "Fizic"]
 let pretentii = ["Inlocuire", "Returnare", "Reparare", "Reziliere", "Control"]
 
 function App() {
-    this.state = {
-      numePetent: '',numePetentValid: true,
-      prenumePetent: '',prenumePetentValid: true,
-      emailPetent: '',emailPetentValid: true,
-      telefonPetent: '',telefonPetentValid: true,
-      adresaPetent: '', adresaPetentValid: true,
-
-      adresaComerciant: '',adresaComerciantValid: true,
-
-      operator:'',operatorValid: true,
-      cuiComerciant:'',cuiComerciantValid: true,
-      dataAchizitionarii:'',dataAchizitionariiValid: true,
-      modalitateCumparare:'',
-      birouReclamatii:'',birouReclamatiiValid: true,
-      produsReclamat:'',produsReclamatValid: true,
-      subcategorieProdus:'',subcategorieProdusValid: true,
-      pretentiiPetent:'',pretentiiPetentValid: true,
-      dovadaAdresarii:'',dovadaAdresariiValid: true,
-      detaliiReclamatie:'',detaliiReclamatieValid: true,
-    }
-
-
+  const handlePrenume = (value) => {
+    setNumepetent(value.target.value)
+  }
+  const [numepetent, setNumepetent] = useState('');
 
   return (
     <div className="App">
@@ -76,7 +59,7 @@ function App() {
         <h1 className='text2'>Datele dvs. pentru a putea fi contactat</h1>
         <Grid direction='row' container spacing={2} marginBottom='10px'>
           <Grid item xs={6} color="black">
-            <TextField className='textfield' fullWidth id="Prenume" label="Prenume" variant="filled" />
+            <TextField className='textfield' fullWidth id="Prenume" label="Prenume" variant="filled" onChange={handlePrenume}/>
           </Grid>
           <Grid item xs={6}>
             <TextField className='textfield' fullWidth id="Nume" label="Nume" variant="filled" />
@@ -211,7 +194,9 @@ function App() {
             </Grid>
           </Grid>
         </Container>
-        <Button className="buttonIncarcare" fullWidth variant="contained">Trimite reclamatia</Button>
+        <Button className="buttonIncarcare" fullWidth variant="contained" onClick={() => {
+    alert(numepetent);
+  }}>Trimite reclamatia</Button>
       </Container>
       </div>
     </div>
