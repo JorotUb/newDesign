@@ -29,13 +29,13 @@
 .container{
   background-image: url(./assets/containertext.jpg);
   background-size:cover;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 .container2{
   background-image: url(./assets/containertextlung.jpg);
   background-size: cover;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
