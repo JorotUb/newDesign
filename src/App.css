@@ -98,4 +98,14 @@ border: 1px,
   margin-left: 8%;
   margin-right: 8%;
 }
+.textfield2{
+  border-radius: 5px;
+  height: 100px;
+  background-color: white;
+}
+.textarea{
+  width: 100%;
+  font-size: large;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
 

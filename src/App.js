@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import './App.css';
 
 const judete = require('./judete.json')
@@ -15,8 +16,32 @@ for(var k in judete) {
   }
 }
 let modalitate = ["Online", "Fizic"]
+let pretentii = ["Inlocuire", "Returnare", "Reparare", "Reziliere", "Control"]
 
 function App() {
+    this.state = {
+      numePetent: '',numePetentValid: true,
+      prenumePetent: '',prenumePetentValid: true,
+      emailPetent: '',emailPetentValid: true,
+      telefonPetent: '',telefonPetentValid: true,
+      adresaPetent: '', adresaPetentValid: true,
+
+      adresaComerciant: '',adresaComerciantValid: true,
+
+      operator:'',operatorValid: true,
+      cuiComerciant:'',cuiComerciantValid: true,
+      dataAchizitionarii:'',dataAchizitionariiValid: true,
+      modalitateCumparare:'',
+      birouReclamatii:'',birouReclamatiiValid: true,
+      produsReclamat:'',produsReclamatValid: true,
+      subcategorieProdus:'',subcategorieProdusValid: true,
+      pretentiiPetent:'',pretentiiPetentValid: true,
+      dovadaAdresarii:'',dovadaAdresariiValid: true,
+      detaliiReclamatie:'',detaliiReclamatieValid: true,
+    }
+
+
+
   return (
     <div className="App">
       <div className="containerBack">
@@ -130,14 +155,26 @@ function App() {
 
           <Grid direction='row' container spacing={2} marginBottom='10px'>
           <Grid item xs={6} color="black">
-            <TextField className='textfield' fullWidth id="Dovada" label="Dovada adresarii operatorului economic" variant="filled" multiline/>
+            <TextField className='textfield' fullWidth id="Detalii" label="Dovada adresarii operatorului economic" variant="filled" multiline/>
           </Grid>
           <Grid item xs={6}>
-            <TextField className='textfield' fullWidth id="Detalii" label="Detalii cu privire la reclamatie" variant="filled" multiline/>
+           <TextField fullWidth className='textfield'id="pretentiile " select label="Pretentiile dumneavoastra"variant="filled"
+           >{pretentii.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+           </TextField>
           </Grid>
         </Grid>
+        <TextareaAutosize
+          aria-label="minimum height"
+          minRows={10}
+          placeholder="Detalii cu privire la aspectele reclamate"
+          className='textarea'
+        />
         <h1 className='text3'>Documente probatorii</h1>
-        <Container maxWidth="md" className='containerDocumente'>
+        <Container maxWidth="lg" className='containerDocumente'>
           <Grid direction='row' container spacing={2} marginBottom='10px'>
             <Grid item xs={6} color="black">
             <h1 className='text4'>Factura / Bon Fiscal / Chitanta</h1>
