@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as ReactDOM from 'react-dom';
 import background from './assets/videoBackGround.mp4';
 import banner from './assets/banner1.jpg';
 import Container from '@mui/material/Container';
@@ -8,7 +7,9 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-import { FilePicker } from 'react-file-picker'
+import { FilePicker } from 'react-file-picker';
+import client from './Client';
+import axios from 'axios';
 import './App.css';
 
 const judete = require('./judete.json')
@@ -20,8 +21,6 @@ for(var k in judete) {
 }
 let modalitate = ["Online", "Fizic"]
 let pretentii = ["Inlocuire", "Returnare", "Reparare", "Reziliere", "Control"]
-
-let dovada = "";
 
 function App() {
 
@@ -67,7 +66,7 @@ function App() {
     setAdresacomerciant(value.target.value)
   }
   const handleJudetComerciant = (value) => {
-    setAdresacomerciant(value.target.value)
+    setJudetcomerciant(value.target.value)
   }
   const handleBirou = (value) => {
     setBirou(value.target.value)
@@ -90,6 +89,8 @@ function App() {
   const [judetComerciant, setJudetcomerciant] = useState('');
 
   const [birou, setBirou] = useState('');
+  const [produs, setProdus] = useState('');
+  const [subgategorie, setSubgategorie] = useState('');
   const [dovada, setDovada] = useState('');
   const [pretentiidvs, setPretentiidvs] = useState('');
   const [detalii, setDetalii] = useState('');
@@ -98,17 +99,77 @@ function App() {
   const [numeDovada, setNumeDovada] = useState('');
   const [numeGarantie, setNumeGarantie] = useState('');
   const [numeContract, setNumeContract] = useState('');
+  
+  const [facFile, setFacFile] = useState(null);
+  const [dovFile, setDovFile] = useState(null);
+  const [garaFile, setGaraFile] = useState(null);
+  const [conFile, setConFile] = useState(null);
+
   const handlePDFpickerFac = (FileObject) => {
+    setFacFile(FileObject)
     setNumeFac(FileObject.name)
   }
   const handlePDFpickerDov = (FileObject) => {
+    setDovFile(FileObject)
     setNumeDovada(FileObject.name)
   }
   const handlePDFpickerGara = (FileObject) => {
+    setGaraFile(FileObject)
     setNumeGarantie(FileObject.name)
   }
   const handlePDFpickerCon = (FileObject) => {
+    setConFile(FileObject)
     setNumeContract(FileObject.name)
+  }
+
+  const trimiteDate = () =>{
+    // let  idPetentSiNume = emailpetent.replace('@','').replace('.','')+numeFac
+
+    client.post('/formularWeb',{
+      nume: numepetent,     
+      prenume: prenumepetent,     
+      telefon: telefonpetent,
+      email: emailpetent,
+      adresa: adresapetent,
+      judet: judetpetent,
+
+      odenumire: denumireOperator,
+      odataachi: dataAchizitionarii,
+      ocui: cui,
+      omodalitate: modalitateaCumparari,
+      adresaComerciant: adresaComerciant,
+      judetComerciant: judetComerciant,
+
+      birou: birou,
+      produs: produs,
+      subgategorie: subgategorie,
+      dovada: dovada,
+      detalii: detalii,
+      pretentii: pretentiidvs,
+
+      numefisier1: numeFac,
+      numefisier2: numeContract,
+      numefisier3: numeGarantie,
+      numefisier4: numeDovada
+    })
+    console.log(facFile)
+    console.log(dovFile)
+    console.log(garaFile)
+    console.log(conFile)
+
+    const formData = new FormData() 
+    formData.append('file', facFile)
+    formData.append('file', dovFile)
+    formData.append('file', garaFile)
+    formData.append('file', conFile)
+    axios({
+      method: "POST",
+      url: "http://192.168.0.218:3333/formularWebFiles",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
   }
   return (
     <div className="App">
@@ -301,10 +362,7 @@ function App() {
           </Grid>
           <p>{numeDovada}</p>
         </Container>
-        <Button className="buttonIncarcare" fullWidth variant="contained" onClick={() => {
-    alert(prenumepetent+numepetent+emailpetent+adresapetent+telefonpetent+judetpetent);
-    console.log(this.dovada)
-  }}>Trimite reclamatia</Button>
+        <Button className="buttonIncarcare" fullWidth variant="contained" onClick={()=>{trimiteDate()} }>Trimite reclamatia</Button>
       </Container>
       </div>
     </div>
