@@ -20,7 +20,7 @@ for(var k in judete) {
   }
 }
 let modalitate = ["Online", "Fizic"]
-let pretentii = ["Inlocuire", "Returnare", "Reparare", "Reziliere", "Control"]
+let pretentii = ["INLOCUIRE", "RETURNARE", "REPARARE", "REZILIERE", "CONTROL"]
 
 function App() {
 
@@ -152,24 +152,23 @@ function App() {
       numefisier3: numeGarantie,
       numefisier4: numeDovada
     })
-    console.log(facFile)
-    console.log(dovFile)
-    console.log(garaFile)
-    console.log(conFile)
 
+    
     const formData = new FormData() 
     formData.append('file', facFile)
     formData.append('file', dovFile)
     formData.append('file', garaFile)
     formData.append('file', conFile)
+
     axios({
       method: "POST",
-      url: "http://192.168.0.218:3333/formularWebFiles",
+      url: "http://51.13.117.87/formularWebFile",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data"
       }
     })
+
   }
   return (
     <div className="App">
