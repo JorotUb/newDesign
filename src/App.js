@@ -11,7 +11,6 @@ import { FilePicker } from 'react-file-picker';
 import client from './Client';
 import axios from 'axios';
 import './App.css';
-import { render } from '@testing-library/react';
 
 const judete = require('./judete.json')
 let jud = []
@@ -25,8 +24,8 @@ let pretentii = ["INLOCUIRE", "RETURNARE", "REPARARE", "REZILIERE", "CONTROL"]
 let birouri = ["PRODUSE SI SERVICII ALIMENTARE", "BUNURI NEALIMENTARE", "PRESTARI SERVICII", "PRODUSE SI SERVICII FINANCIAR BANCARE", "BIROU CONTROL SI SUPRAVEGHERE ALIMENTATIE PUBLICA"]
 
 
-let numesubgrupa=""; let numesubgrupaprodus="";
-let indexx=-1;let indexxx=-1;
+// let numesubgrupa=""; let numesubgrupaprodus="";
+// let indexx=-1;let indexxx=-1;
 function App() {
 
   const handlePrenume = (value) => {
@@ -127,8 +126,8 @@ function App() {
   const handleBirou = (value) => {
     setBirou(value.target.value)
     setBirouERR(true)
-    this.indexx = parseInt(birouri.indexOf(value.target.value)-1);
-    this.numesubgrupa="produs"+this.indexx.valueOf();
+    // this.indexx = parseInt(birouri.indexOf(value.target.value)-1);
+    // this.numesubgrupa="produs"+this.indexx.valueOf();
   }
   const handleProdus = (value) => {
     setProdus(value.target.value)
@@ -149,19 +148,19 @@ function App() {
   const [denumireOperatorERR, setDenumireoperatorERR] = useState(true);
 
   const [dataAchizitionarii, setDataachi] = useState('');
-  const [dataAchizitionariiERR, setDataachiERR] = useState(true);
+  // const [dataAchizitionariiERR, setDataachiERR] = useState(true);
 
   const [cui, setCui] = useState('');
   const [cuiERR, setCuiERR] = useState(true);
 
   const [modalitateaCumparari, setModalitateacumpararii] = useState('');
-  const [modalitateaCumparariERR, setModalitateacumparariiERR] = useState(true);
+  // const [modalitateaCumparariERR, setModalitateacumparariiERR] = useState(true);
 
   const [adresaComerciant, setAdresacomerciant] = useState('');
-  const [adresaComerciantERR, setAdresacomerciantERR] = useState(true);
+  // const [adresaComerciantERR, setAdresacomerciantERR] = useState(true);
 
   const [judetComerciant, setJudetcomerciant] = useState('');
-  const [judetComerciantERR, setJudetcomerciantERR] = useState(true);
+  // const [judetComerciantERR, setJudetcomerciantERR] = useState(true);
 
   const [birou, setBirou] = useState('');
   const [birouERR, setBirouERR] = useState(true);
@@ -170,16 +169,16 @@ function App() {
   const [produsERR, setProdusERR] = useState(true);
 
   const [subgategorie, setSubgategorie] = useState('');
-  const [subgategorieERR, setSubgategorieERR] = useState(true);
+  // const [subgategorieERR, setSubgategorieERR] = useState(true);
 
   const [dovada, setDovada] = useState('');
-  const [dovadaERR, setDovadaERR] = useState(true);
+  // const [dovadaERR, setDovadaERR] = useState(true);
 
   const [pretentiidvs, setPretentiidvs] = useState('');
-  const [pretentiidvsERR, setPretentiidvsERR] = useState(true);
+  // const [pretentiidvsERR, setPretentiidvsERR] = useState(true);
 
   const [detalii, setDetalii] = useState('');
-  const [detaliiERR, setDetaliiERR] = useState(true);
+  // const [detaliiERR, setDetaliiERR] = useState(true);
 
   const [numeFac, setNumeFac] = useState('');
   const [numeDovada, setNumeDovada] = useState('');
@@ -455,4 +454,4 @@ function App() {
   );
   }
 
-export default App
+export default App;
