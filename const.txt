@@ -1,0 +1,27 @@
+const produs0 = ["Bunuri de consum","Educatie","Sanatate","Servicii destinate petrecerii timpului liber" ]
+// const produs1 = ["Bunuri de consum", "Sanatate" ]
+// const produs2 = ["Bunuri de consum", "Educatie", "Sanatate", "Servicii de furnizare utilitati", "Servicii de transport", "Servicii destinate petrecerii timpului liber", "Servicii pentru public","Servicii postale si de comunicatii electronice","Servicii financiare"]
+// const produs3 = ["Financiar bancar"]
+// const produs4 = ["Bunuri de consum"]
+
+// const subcat00 =["Ape minerale naturale", "Bauturi alcoolice (vin, bere)", "Bauturi nonalcoolice - bauturi racoritoare","Carne si produse din carne","Fructe si legume","Lapte si produse lactate","Miere","Oua","Paine, produse de panificatie si cerealiere","Peste si conserve pe baza de peste","Produse alimentare bio, ecologice, modificate genetic","Produse alimentare traditionale", "Sare, otet, condimente", "Vanzari accelerate si promotionale", "Zahar, produse zaharoase, ciocolata","Alte produse alimentare"]
+// const subcat01 =["Gradinite cu program normal si prelungit / alimentatie / lapte si corn"]
+// const subcat02 =["Aziluri si centre de ingrijire / alimentatie", "Produse nutritionale si tratamente naturiste", "Suplimente alimentare"]
+// const subcat03 =["Restaurante,baruri, catering"]
+
+// const subcat10 =["Animale, hrana si articole speciale","Articole sportive si de agrement","Auto, moto, velo","Bijuterii din metale pretioase si pietre pretioase","Birotica, papetarie, librarie", "Ceasuri si accesorii","Combustibili si lubrifianti","Cosmetice, intretinere si ingrijire personala", "Detergenti si alte produse chimice", "Electrocasnice","Electronice","Incaltaminte si marochinarie", "Jocuri si jucarii", "Materiale de constructii si bricolaj", "Menaj si uz casnic", "Mobilier si decoratiuni interioare", "Piese si accesorii auto, moto, velo inclusiv anvelope", "Puericultura", "Textile", "Alte produse nealimentare"]
+// const subcat11 =["Medicamente","Parafarmaceutice si similare", "Dispozitive medicale (ochelari, proteze etc.)"]
+
+// const subcat20 =["Bijuterii, argintarie, ceasuri/orologii, ceasuri de mana si accesorii / reparatii", "Butelii GPL / incarcare"]
+// const subcat21 =["Cursuri de limbi straine, cursuri de conducere auto","Gradinite cu program normal si prelungit / servicii","Institutii de invatamant / camine"]
+// const subcat22 =["Aziluri si centre de ingrijire / servicii", "Cabinete medicale si stomatologice"]
+// const subcat23 =["Servicii de furnizare a apei si servicii conexe","Servicii de furnizare a energiei electrice si servicii conexe", "Servicii de furnizare a gazului si servicii conexe", "Servicii de furnizare energie termica si servicii conexe", "Servicii de salubrizare", "Alte servicii de furnizare utilitati"]
+// const subcat24 =["Servicii de inchiriere","Servicii de parcare","Taxi","Tramvai, troleibuz, autobuz, metrou","Transport – servicii conexe", "Transport aerian", "Transport feroviar", "Transport maritim, fluvial si pe canale interne navigabile"]
+// const subcat25 =["Servicii de relaxare", "Servicii oferite de agentiile de turism", "Concursuri, jocuri de noroc, loterii publicitare", "Echipamente pentru parcuri de distractii", "Pachete de servicii turistice", "Servicii culturale si de divertisment", "Servicii de agrement", "Servicii de cazare turistica", "Servicii sportive si de agrement", "Spatii si locuri de joaca", "Timeshare si alte servicii similare", "Unitati de cazare"]
+// const subcat26 =["Comert in afara spatiilor comerciale / vanzare servicii", "Comert la distanta / vanzare servicii", "Executare la comanda mobilier si tamplarie termopane", "Executare la comanda produse confectii si incaltaminte", "Lucrari de intretinere si reparatii electronice si electrocasnice", "Lucrari de intretinere si reparatii instalatii si imobile","Service auto - moto - velo", "Servicii de consultanta, asistenta, intermediere, recrutare, organizare de evenimente", "Servicii de inchiriere imbracaminte si incaltaminte", "Servicii de infrumusetare si ingrijire personala", "Servicii de ingrijire copii", "Servicii de ingrijire pentru animale de companie", "Servicii de intretinere si curatenie", "Servicii de mutare, relocare si depozitare", " Servicii funerare", "Servicii imobiliare", "Servicii imobiliare rezidentiale", "Servicii juridice si contabilitate", "Spalatorii chimice"]
+// const subcat27 =["Servicii de internet", "Servicii postale si de curierat", "Servicii de telefonie fixa", "Servicii de telefonie mobila","Servicii televiziune"]
+// const subcat28 =["Servicii de schimb valutar"]
+
+// const subcat30 =["Fonduri de investitii, fonduri de pensii si titluri de valori", "Leasing auto, operational, imobiliar", "Recuperari creante", "Servicii bancare contracte de credit", "Servicii bancare contracte de economisire creditare", "Servicii bancare conturi de economii", "Servicii bancare de cont curent", "Servicii de asigurare si reasigurare (redirectionate la ASF)", "Servicii financiare ATM+uri","Servicii financiare carduri de credit", "Servicii financiare carduri de cumparaturi", "Servicii financiare carduri de debit", "Servicii financiare ipoteci si credite imobiliare", "Servicii financiare"]
+
+// const subcat40 =["Vanzari accelerate si promotionale","Produse alimentare"]
