@@ -11,6 +11,7 @@ import { FilePicker } from 'react-file-picker';
 import client from './Client';
 import axios from 'axios';
 import './App.css';
+import { render } from '@testing-library/react';
 
 const judete = require('./judete.json')
 let jud = []
@@ -21,43 +22,125 @@ for(var k in judete) {
 }
 let modalitate = ["Online", "Fizic"]
 let pretentii = ["INLOCUIRE", "RETURNARE", "REPARARE", "REZILIERE", "CONTROL"]
+let birouri = ["PRODUSE SI SERVICII ALIMENTARE", "BUNURI NEALIMENTARE", "PRESTARI SERVICII", "PRODUSE SI SERVICII FINANCIAR BANCARE", "BIROU CONTROL SI SUPRAVEGHERE ALIMENTATIE PUBLICA"]
 
+const produs0 = ["Bunuri de consum","Educatie","Sanatate","Servicii destinate petrecerii timpului liber" ]
+const produs1 = ["Bunuri de consum", "Sanatate" ]
+const produs2 = ["Bunuri de consum", "Educatie", "Sanatate", "Servicii de furnizare utilitati", "Servicii de transport", "Servicii destinate petrecerii timpului liber", "Servicii pentru public","Servicii postale si de comunicatii electronice","Servicii financiare"]
+const produs3 = ["Financiar bancar"]
+const produs4 = ["Bunuri de consum"]
+
+const subcat00 =["Ape minerale naturale", "Bauturi alcoolice (vin, bere)", "Bauturi nonalcoolice - bauturi racoritoare","Carne si produse din carne","Fructe si legume","Lapte si produse lactate","Miere","Oua","Paine, produse de panificatie si cerealiere","Peste si conserve pe baza de peste","Produse alimentare bio, ecologice, modificate genetic","Produse alimentare traditionale", "Sare, otet, condimente", "Vanzari accelerate si promotionale", "Zahar, produse zaharoase, ciocolata","Alte produse alimentare"]
+const subcat01 =["Gradinite cu program normal si prelungit / alimentatie / lapte si corn"]
+const subcat02 =["Aziluri si centre de ingrijire / alimentatie", "Produse nutritionale si tratamente naturiste", "Suplimente alimentare"]
+const subcat03 =["Restaurante,baruri, catering"]
+
+const subcat10 =["Animale, hrana si articole speciale","Articole sportive si de agrement","Auto, moto, velo","Bijuterii din metale pretioase si pietre pretioase","Birotica, papetarie, librarie", "Ceasuri si accesorii","Combustibili si lubrifianti","Cosmetice, intretinere si ingrijire personala", "Detergenti si alte produse chimice", "Electrocasnice","Electronice","Incaltaminte si marochinarie", "Jocuri si jucarii", "Materiale de constructii si bricolaj", "Menaj si uz casnic", "Mobilier si decoratiuni interioare", "Piese si accesorii auto, moto, velo inclusiv anvelope", "Puericultura", "Textile", "Alte produse nealimentare"]
+const subcat11 =["Medicamente","Parafarmaceutice si similare", "Dispozitive medicale (ochelari, proteze etc.)"]
+
+const subcat20 =["Bijuterii, argintarie, ceasuri/orologii, ceasuri de mana si accesorii / reparatii", "Butelii GPL / incarcare"]
+const subcat21 =["Cursuri de limbi straine, cursuri de conducere auto","Gradinite cu program normal si prelungit / servicii","Institutii de invatamant / camine"]
+const subcat22 =["Aziluri si centre de ingrijire / servicii", "Cabinete medicale si stomatologice"]
+const subcat23 =["Servicii de furnizare a apei si servicii conexe","Servicii de furnizare a energiei electrice si servicii conexe", "Servicii de furnizare a gazului si servicii conexe", "Servicii de furnizare energie termica si servicii conexe", "Servicii de salubrizare", "Alte servicii de furnizare utilitati"]
+const subcat24 =["Servicii de inchiriere","Servicii de parcare","Taxi","Tramvai, troleibuz, autobuz, metrou","Transport – servicii conexe", "Transport aerian", "Transport feroviar", "Transport maritim, fluvial si pe canale interne navigabile"]
+const subcat25 =["Servicii de relaxare", "Servicii oferite de agentiile de turism", "Concursuri, jocuri de noroc, loterii publicitare", "Echipamente pentru parcuri de distractii", "Pachete de servicii turistice", "Servicii culturale si de divertisment", "Servicii de agrement", "Servicii de cazare turistica", "Servicii sportive si de agrement", "Spatii si locuri de joaca", "Timeshare si alte servicii similare", "Unitati de cazare"]
+const subcat26 =["Comert in afara spatiilor comerciale / vanzare servicii", "Comert la distanta / vanzare servicii", "Executare la comanda mobilier si tamplarie termopane", "Executare la comanda produse confectii si incaltaminte", "Lucrari de intretinere si reparatii electronice si electrocasnice", "Lucrari de intretinere si reparatii instalatii si imobile","Service auto - moto - velo", "Servicii de consultanta, asistenta, intermediere, recrutare, organizare de evenimente", "Servicii de inchiriere imbracaminte si incaltaminte", "Servicii de infrumusetare si ingrijire personala", "Servicii de ingrijire copii", "Servicii de ingrijire pentru animale de companie", "Servicii de intretinere si curatenie", "Servicii de mutare, relocare si depozitare", " Servicii funerare", "Servicii imobiliare", "Servicii imobiliare rezidentiale", "Servicii juridice si contabilitate", "Spalatorii chimice"]
+const subcat27 =["Servicii de internet", "Servicii postale si de curierat", "Servicii de telefonie fixa", "Servicii de telefonie mobila","Servicii televiziune"]
+const subcat28 =["Servicii de schimb valutar"]
+
+const subcat30 =["Fonduri de investitii, fonduri de pensii si titluri de valori", "Leasing auto, operational, imobiliar", "Recuperari creante", "Servicii bancare contracte de credit", "Servicii bancare contracte de economisire creditare", "Servicii bancare conturi de economii", "Servicii bancare de cont curent", "Servicii de asigurare si reasigurare (redirectionate la ASF)", "Servicii financiare ATM+uri","Servicii financiare carduri de credit", "Servicii financiare carduri de cumparaturi", "Servicii financiare carduri de debit", "Servicii financiare ipoteci si credite imobiliare", "Servicii financiare"]
+
+const subcat40 =["Vanzari accelerate si promotionale","Produse alimentare"]
+
+let numesubgrupa=""; let numesubgrupaprodus="";
+let indexx=-1;let indexxx=-1;
 function App() {
 
   const handlePrenume = (value) => {
-    setPrenumepetent(value.target.value)
+    if(value.target.value.match(/^[A-Za-z ]{1,50}$/)){
+      setPrenumepetent(value.target.value)
+      setPrenumepetentERR(true)
+    }else{
+      setPrenumepetentERR(false)
+    }
   }
   const handleNume = (value) => {
-    setNumepetent(value.target.value)
+    if(value.target.value.match(/^[A-Za-z ]{1,50}$/)){
+      setNumepetent(value.target.value)
+      setNumepetentERR(true)
+    }else{
+      setNumepetentERR(false)
+    }
   }
   const handleEmail = (value) => {
-    setEmailpetent(value.target.value)
+    if(value.target.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+      setEmailpetent(value.target.value)
+      setEmailpetentERR(true)
+    }else{
+      setEmailpetentERR(false)
+    }
   }
   const handleAdresa = (value) => {
-    setAdresapetent(value.target.value)
+    if(value.target.value !== ''){
+      setAdresapetent(value.target.value)
+      setAdresapetentERR(true)
+    }else{
+      setAdresapetentERR(false)
+    }
   }
   const handleTelefon = (value) => {
-    setTelefonpetent(value.target.value)
+    if(value.target.value.match(/^\d{1,20}$/)){
+      setTelefonpetent(value.target.value)
+      setTelefonpetentERR(true)
+    }else{
+      setTelefonpetentERR(false)
+    }
   }
   const handleJudet = (value) => {
-    setJudetpetent(value.target.value)
+    if(value.target.value !== ''){
+      setJudetpetent(value.target.value)
+      setJudetpetentERR(true)
+    }else{
+      setJudetpetentERR(false)
+    }
   }
   //State-uri petent
   const [prenumepetent, setPrenumepetent] = useState('');
+  const [prenumepetentERR, setPrenumepetentERR] = useState(true);
+
   const [numepetent, setNumepetent] = useState('');
+  const [numepetentERR, setNumepetentERR] = useState(true);
+
   const [emailpetent, setEmailpetent] = useState('');
+  const [emailpetentERR, setEmailpetentERR] = useState(true);
+
   const [adresapetent, setAdresapetent] = useState('');
+  const [adresapetentERR, setAdresapetentERR] = useState(true);
+  
   const [telefonpetent, setTelefonpetent] = useState('');
+  const [telefonpetentERR, setTelefonpetentERR] = useState(true);
+
   const [judetpetent, setJudetpetent] = useState('');
+  const [judetpetentERR, setJudetpetentERR] = useState(true);
 
   const handleDenumireOperator = (value) => {
-    setDenumireoperator(value.target.value)
+    if(value.target.value.match(/^[A-Za-z ]{1,50}$/)){
+      setDenumireoperator(value.target.value)
+      setDenumireoperatorERR(true)
+    }else{
+      setDenumireoperatorERR(false)
+    }
   }
   const handleData = (value) => {
     setDataachi(value.target.value)
   }
   const handleCui = (value) => {
-    setCui(value.target.value)
+    if(value.target.value.match(/^\d{1,20}$/)){
+      setCui(value.target.value)
+      setCuiERR(true)
+    }else{
+      setCuiERR(false)
+    }
   }
   const handleModalitate = (value) => {
     setModalitateacumpararii(value.target.value)
@@ -70,6 +153,14 @@ function App() {
   }
   const handleBirou = (value) => {
     setBirou(value.target.value)
+    setBirouERR(true)
+    this.indexx = parseInt(birouri.indexOf(value.target.value)-1);
+    this.numesubgrupa="produs"+this.indexx.valueOf();
+  }
+  const handleProdus = (value) => {
+    setProdus(value.target.value)
+    setProdusERR(true)
+
   }
   const handleDovada = (value) => {
     setDovada(value.target.value)
@@ -82,18 +173,40 @@ function App() {
   }
   ///State-uri comerciant
   const [denumireOperator, setDenumireoperator] = useState('');
+  const [denumireOperatorERR, setDenumireoperatorERR] = useState(true);
+
   const [dataAchizitionarii, setDataachi] = useState('');
+  const [dataAchizitionariiERR, setDataachiERR] = useState(true);
+
   const [cui, setCui] = useState('');
+  const [cuiERR, setCuiERR] = useState(true);
+
   const [modalitateaCumparari, setModalitateacumpararii] = useState('');
+  const [modalitateaCumparariERR, setModalitateacumparariiERR] = useState(true);
+
   const [adresaComerciant, setAdresacomerciant] = useState('');
+  const [adresaComerciantERR, setAdresacomerciantERR] = useState(true);
+
   const [judetComerciant, setJudetcomerciant] = useState('');
+  const [judetComerciantERR, setJudetcomerciantERR] = useState(true);
 
   const [birou, setBirou] = useState('');
+  const [birouERR, setBirouERR] = useState(true);
+
   const [produs, setProdus] = useState('');
+  const [produsERR, setProdusERR] = useState(true);
+
   const [subgategorie, setSubgategorie] = useState('');
+  const [subgategorieERR, setSubgategorieERR] = useState(true);
+
   const [dovada, setDovada] = useState('');
+  const [dovadaERR, setDovadaERR] = useState(true);
+
   const [pretentiidvs, setPretentiidvs] = useState('');
+  const [pretentiidvsERR, setPretentiidvsERR] = useState(true);
+
   const [detalii, setDetalii] = useState('');
+  const [detaliiERR, setDetaliiERR] = useState(true);
 
   const [numeFac, setNumeFac] = useState('');
   const [numeDovada, setNumeDovada] = useState('');
@@ -170,6 +283,7 @@ function App() {
     })
 
   }
+
   return (
     <div className="App">
       <div className="containerBack">
@@ -204,26 +318,26 @@ function App() {
         <h1 className='text2'>Datele dvs. pentru a putea fi contactat</h1>
         <Grid direction='row' container spacing={2} marginBottom='10px'>
           <Grid item xs={6} color="black">
-            <TextField className='textfield' fullWidth id="Prenume" label="Prenume" variant="filled" onChange={handlePrenume}/>
+            <TextField error={!prenumepetentERR} className='textfield' fullWidth id="Prenume" label="Prenume" variant="filled" onChange={handlePrenume}/>
           </Grid>
           <Grid item xs={6}>
-            <TextField className='textfield' fullWidth id="Nume" label="Nume" variant="filled" onChange={handleNume}/>
+            <TextField error={!numepetentERR} className='textfield' fullWidth id="Nume" label="Nume" variant="filled" onChange={handleNume}/>
           </Grid>
         </Grid>
         <Grid direction='row' container spacing={2} marginBottom='10px'>
           <Grid item xs={6} color="black">
-            <TextField className='textfield' fullWidth id="Email" label="E-mail" variant="filled" onChange={handleEmail} />
+            <TextField error={!emailpetentERR} className='textfield' fullWidth id="Email" label="E-mail" variant="filled" onChange={handleEmail} />
           </Grid>
           <Grid item xs={6}>
-            <TextField className='textfield' fullWidth id="Telefon" label="Telefon" variant="filled" type="number" onChange={handleTelefon}/>
+            <TextField error={!telefonpetentERR} className='textfield' fullWidth id="Telefon" label="Telefon" variant="filled" type="number" onChange={handleTelefon}/>
           </Grid>
         </Grid>
         <Grid direction='row' container spacing={2} marginBottom='10px'>
           <Grid item xs={6} color="black">
-            <TextField className='textfield' fullWidth id="Adresa" label="Adresa - Strada, Nr, (Bl,Et,Ap" variant="filled" onChange={handleAdresa}/>
+            <TextField error={!adresapetentERR} className='textfield' fullWidth id="Adresa" label="Adresa - Strada, Nr, (Bl,Et,Ap" variant="filled" onChange={handleAdresa}/>
           </Grid>
           <Grid item xs={6}>
-          <TextField fullWidth className='textfield'id="judet" select label="Judet"variant="filled" onChange={handleJudet}
+          <TextField error={!judetpetentERR} fullWidth className='textfield'id="judet" select label="Judet"variant="filled" onChange={handleJudet}
         >{jud.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
@@ -273,7 +387,7 @@ function App() {
         </Grid>
         <div className='textfieldWidth'>
           <TextField fullWidth className='textfieldWidth'id="BirouReclamatii" select label="Birou reclamatii"variant="filled" onChange={handleBirou}
-          >{jud.map((option) => (
+          >{birouri.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
@@ -366,6 +480,6 @@ function App() {
       </div>
     </div>
   );
-}
+  }
 
-export default App;
+export default App
